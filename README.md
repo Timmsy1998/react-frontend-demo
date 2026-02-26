@@ -1,6 +1,6 @@
 # Timmsy Frontend Arena Demo
 
-This is a React + TypeScript + Vite showcase I (Timmsy) built to demonstrate how I approach modern frontend work when I want it to feel both high-impact and maintainable.
+This is a React + TypeScript + Vite showcase I built to demonstrate how I approach modern frontend work when I want it to feel both high-impact and maintainable.
 
 ## Why I built it this way
 
