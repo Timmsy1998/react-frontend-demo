@@ -2,17 +2,16 @@ import { motion, useInView } from "framer-motion";
 import { Quote } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import { qualityBars, resultMetrics } from "@/content/game-content";
+import { revealScale, revealSoft, viewportDefaults } from "@/lib/motion";
+
 type Metric = {
   label: string;
   value: number;
   suffix?: string;
 };
 
-const metrics: Metric[] = [
-  { label: "Projects shipped", value: 24, suffix: "+" },
-  { label: "Avg. Lighthouse score", value: 98, suffix: "%" },
-  { label: "Performance gain", value: 42, suffix: "%" }
-];
+const metrics: Metric[] = resultMetrics;
 
 function CountUp({ value, suffix = "" }: { value: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -46,25 +45,30 @@ function CountUp({ value, suffix = "" }: { value: number; suffix?: string }) {
 
 export function StatsSection() {
   return (
-    <section className="mx-auto grid w-[min(1100px,92%)] gap-6 pb-28 md:grid-cols-[1.2fr_1fr]">
+    <section
+      id="results"
+      className="mx-auto grid w-[min(1100px,92%)] gap-6 pb-28 md:grid-cols-[1.2fr_1fr]"
+    >
       <div className="rounded-2xl border border-border/70 bg-card/55 p-6 backdrop-blur-sm sm:p-8">
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.8 }}
+          variants={revealSoft}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ ...viewportDefaults, amount: 0.65 }}
           transition={{ duration: 0.45 }}
           className="text-sm font-medium uppercase tracking-[0.2em] text-primary"
         >
-          Results
+          Match Results
         </motion.p>
 
         <div className="mt-6 grid gap-5 sm:grid-cols-3">
           {metrics.map((item, idx) => (
             <motion.div
               key={item.label}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.65 }}
+              variants={revealScale}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ ...viewportDefaults, amount: 0.55 }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
               className="rounded-xl border border-border/60 bg-background/40 p-4"
             >
@@ -73,22 +77,56 @@ export function StatsSection() {
             </motion.div>
           ))}
         </div>
+
+        <div className="mt-8 space-y-4">
+          {qualityBars.map((bar, idx) => (
+            <motion.div
+              key={bar.label}
+              variants={revealSoft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ ...viewportDefaults, amount: 0.7 }}
+              transition={{ duration: 0.35, delay: idx * 0.08 }}
+            >
+              <div className="mb-2 flex items-center justify-between text-xs text-muted-foreground">
+                <span>{bar.label}</span>
+                <span>{bar.percent}%</span>
+              </div>
+              <div className="h-2 overflow-hidden rounded-full bg-background/70">
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${bar.percent}%` }}
+                  viewport={{ ...viewportDefaults, amount: 0.75 }}
+                  transition={{ duration: 0.7, delay: 0.2 + idx * 0.08 }}
+                  className="h-full rounded-full bg-gradient-to-r from-primary to-cyan-300"
+                />
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       <motion.aside
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.55 }}
+        variants={revealScale}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ ...viewportDefaults, amount: 0.45 }}
         transition={{ duration: 0.5 }}
-        className="rounded-2xl border border-border/70 bg-card/55 p-6 backdrop-blur-sm sm:p-8"
+        className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/55 p-6 backdrop-blur-sm sm:p-8"
       >
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.16),transparent_42%)]" />
         <Quote className="h-6 w-6 text-primary" />
         <p className="mt-4 text-lg leading-relaxed">
-          Timmsy transformed our frontend from a basic interface into a product that
-          feels premium and performs better on every key metric.
+          Timmsy turned our UI from a static lobby into a live arena. Players feel the
+          speed immediately, and our team ships updates without regressions.
         </p>
+        <div className="mt-4 inline-flex gap-1 text-primary">
+          {Array.from({ length: 5 }).map((_, idx) => (
+            <span key={idx}>★</span>
+          ))}
+        </div>
         <p className="mt-5 text-sm text-muted-foreground">
-          Jordan Lee, Product Lead at Northline
+          Jordan Lee, Product Lead at Northline Interactive
         </p>
       </motion.aside>
     </section>
