@@ -1,3 +1,4 @@
+import { FeaturesSection } from "@/components/sections/features-section";
 import { HeroSection } from "@/components/sections/hero-section";
 import { TopNav } from "@/components/sections/top-nav";
 
@@ -8,6 +9,7 @@ export default function App() {
       <div className="relative z-10">
         <TopNav />
         <HeroSection />
+        <FeaturesSection />
       </div>
     </main>
   );
