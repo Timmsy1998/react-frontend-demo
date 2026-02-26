@@ -1,5 +1,6 @@
 import { FeaturesSection } from "@/components/sections/features-section";
 import { HeroSection } from "@/components/sections/hero-section";
+import { StatsSection } from "@/components/sections/stats-section";
 import { TopNav } from "@/components/sections/top-nav";
 
 export default function App() {
@@ -10,6 +11,10 @@ export default function App() {
         <TopNav />
         <HeroSection />
         <FeaturesSection />
+        <StatsSection />
+      </div>
+      <div className="fixed bottom-4 right-4 z-30 rounded-md border border-border/80 bg-card/80 px-3 py-2 text-xs text-muted-foreground shadow-lg backdrop-blur">
+        Note: All metrics and client details shown are mock sample data.
       </div>
     </main>
   );
