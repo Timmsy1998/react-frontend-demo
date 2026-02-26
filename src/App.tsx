@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 
+import { ArsenalSection } from "@/components/sections/arsenal-section";
 import { FeaturesSection } from "@/components/sections/features-section";
 import { LandingHeader } from "@/components/sections/landing-header";
+import { OperationsSection } from "@/components/sections/operations-section";
+import { PipelineSection } from "@/components/sections/pipeline-section";
 import { StatsSection } from "@/components/sections/stats-section";
 import { TopNav } from "@/components/sections/top-nav";
 import { revealScale, viewportDefaults } from "@/lib/motion";
@@ -17,6 +20,9 @@ export default function App() {
       >
         <TopNav />
         <FeaturesSection />
+        <OperationsSection />
+        <ArsenalSection />
+        <PipelineSection />
         <StatsSection />
         <section id="contact" className="mx-auto w-[min(1100px,92%)] pb-28">
           <motion.div

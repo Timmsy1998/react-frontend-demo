@@ -102,7 +102,7 @@ export function LandingHeader() {
       onMouseMove={handleMove}
       onMouseEnter={(event) => resetTilt(event.currentTarget)}
       onMouseLeave={(event) => resetTilt(event.currentTarget)}
-      className="relative grid min-h-screen place-items-center overflow-hidden px-6"
+      className="relative grid min-h-[100svh] place-items-center overflow-x-hidden px-6 py-20 sm:py-24"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,hsl(var(--primary)/0.34),transparent_38%),radial-gradient(circle_at_88%_10%,#00d4ff33,transparent_32%),linear-gradient(160deg,#060b14,#0a1321_52%,#091022)]" />
       <motion.div style={{ backgroundImage: spotlight }} className="pointer-events-none absolute inset-0" />
@@ -169,7 +169,7 @@ export function LandingHeader() {
           whileInView="visible"
           viewport={{ ...viewportDefaults, amount: 0.7 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="max-w-4xl bg-gradient-to-r from-white via-cyan-100 to-slate-200 bg-clip-text text-balance text-5xl font-semibold leading-tight tracking-tight text-transparent sm:text-7xl"
+          className="max-w-4xl py-1 text-balance text-5xl font-semibold leading-[1.24] tracking-tight text-slate-100 [text-shadow:0_8px_28px_rgba(34,211,238,0.2)] sm:text-7xl sm:leading-[1.14]"
         >
           Spawn into a frontend built like a game.
         </motion.h1>
